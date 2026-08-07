@@ -45,9 +45,6 @@ impl Task {
     pub fn get_name(&self) -> &String {
         &self.name
     }
-    pub fn get_description(&self) -> &String {
-        &self.description
-    }
     pub fn get_till(&self) -> &String {
         &self.till
     }
