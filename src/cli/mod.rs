@@ -42,4 +42,43 @@ pub enum Commands {
         ///How to sort: all, done or undone
         sort: Option<SortType>,
     },
+    ///Modify existing task
+    Modify {
+        ///ID of the task
+        id: String,
+
+        ///Name for the task
+        #[arg(short, long)]
+        name: Option<String>,
+
+        ///Description of the task
+        #[arg(short, long)]
+        description: Option<String>,
+
+        ///Date due task needs to be done
+        #[arg(short, long)]
+        till: Option<String>,
+
+        ///Status of the task, done or not
+        #[arg(short, long)]
+        status: Option<String>,
+    },
+
+    ///Searches for a task based on the parameters
+    Search {
+        ///ID of the task
+        #[arg(short, long)]
+        id: Option<String>,
+
+        ///Name for the task
+        #[arg(short, long)]
+        name: Option<String>,
+
+        ///Date due task needs to be done
+        #[arg(short, long)]
+        till: Option<String>,
+
+        #[arg(short, long)]
+        status: Option<String>,
+    },
 }

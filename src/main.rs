@@ -29,6 +29,23 @@ fn main() {
         Commands::Done { id } => {
             commands::done::execute(&mut data, id);
         }
+        Commands::Modify {
+            id,
+            name,
+            description,
+            till,
+            status,
+        } => {
+            commands::modify::execute(&mut data, id, name, description, till, status);
+        }
+        Commands::Search {
+            id,
+            name,
+            till,
+            status,
+        } => {
+            commands::search::execute(&data, id, name, till, status);
+        }
     }
 
     Data::save(&data);
