@@ -1,4 +1,3 @@
-use clap::builder::Str;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Serialize, Deserialize)]

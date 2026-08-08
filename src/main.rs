@@ -1,10 +1,7 @@
 mod cli;
 mod commands;
-mod data;
-mod task;
-
 use clap::Parser;
-use data::Data;
+use todo::data::Data;
 
 use crate::cli::{Cli, Commands};
 

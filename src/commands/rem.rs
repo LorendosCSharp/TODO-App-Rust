@@ -1,5 +1,12 @@
-use crate::data::Data;
+use todo::{api, data::Data};
 
 pub fn execute(data: &mut Data, id: String) {
-    data.remove_task(id);
+    match api::remove_task(data, id) {
+        Ok(value) => {
+            println!("{}", value);
+        }
+        Err(err_value) => {
+            eprintln!("{}", err_value);
+        }
+    }
 }

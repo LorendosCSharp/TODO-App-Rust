@@ -1,8 +1,14 @@
-use crate::data::Data;
+use todo::{api, data::Data};
 
 pub fn execute(data: &mut Data, id: String) {
-    if let Some(task) = data.tasks.get_mut(&id) {
-        task.change_status(true);
-        task.print_task();
+    match api::done_task(data, id) {
+        Ok(value) => {
+            println!("Finished task");
+            print!("ID {}", value.0);
+            value.1.print_task();
+        }
+        Err(err_value) => {
+            eprintln!("{}", err_value)
+        }
     }
 }

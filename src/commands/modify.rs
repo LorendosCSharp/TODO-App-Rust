@@ -1,4 +1,4 @@
-use crate::data::Data;
+use todo::{api, data::Data};
 
 pub fn execute(
     data: &mut Data,
@@ -8,20 +8,14 @@ pub fn execute(
     till: Option<String>,
     status: Option<String>,
 ) {
-    if let Some(task) = data.tasks.get_mut(&id) {
-        if let Some(new_name) = name {
-            task.change_name(new_name);
+    match api::modify_task(data, id, name, description, till, status) {
+        Ok(value) => {
+            println!("Modified a task with success");
+            print!("ID {} | ", value.0);
+            value.1.print_task();
         }
-        if let Some(new_description) = description {
-            task.change_description(new_description);
+        Err(err_value) => {
+            eprintln!("{}", err_value);
         }
-        if let Some(new_till) = till {
-            task.change_till(new_till);
-        }
-        if let Some(new_status) = status {
-            task.change_status(if new_status == "done" { true } else { false });
-        }
-    } else {
-        eprintln!("Couldn't find the task with ID {}", id);
     }
 }
